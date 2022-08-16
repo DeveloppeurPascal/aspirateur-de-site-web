@@ -1,0 +1,152 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'AspiSite'
+  ClientHeight = 571
+  ClientWidth = 988
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 988.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    object Label1: TLabel
+      Align = Left
+      Size.Width = 120.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'URL du site '#224' aspirer'
+    end
+    object edtURL: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 0
+      Size.Width = 788.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'https://www.siteaaspirer.com'
+    end
+    object btnGo: TButton
+      Align = Right
+      Default = True
+      Position.X = 908.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Go !'
+      OnClick = btnGoClick
+    end
+  end
+  object StringGrid1: TStringGrid
+    Align = Client
+    CanFocus = True
+    ClipChildren = True
+    Size.Width = 988.000000000000000000
+    Size.Height = 549.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    RowCount = 0
+    Viewport.Width = 984.000000000000000000
+    Viewport.Height = 524.000000000000000000
+  end
+  object tabURLDuSiteAAspirer: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'URL_Source'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'Nom_Fichier'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'Enregistree'
+        DataType = ftBoolean
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 464
+    Top = 216
+    object tabURLDuSiteAAspirerid: TIntegerField
+      FieldName = 'id'
+    end
+    object tabURLDuSiteAAspirerURL_Source: TStringField
+      DisplayWidth = 100
+      FieldName = 'URL_Source'
+      Size = 255
+    end
+    object tabURLDuSiteAAspirerNom_Fichier: TStringField
+      DisplayWidth = 100
+      FieldName = 'Nom_Fichier'
+      Size = 255
+    end
+    object tabURLDuSiteAAspirerEnregistree: TBooleanField
+      FieldName = 'Enregistree'
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = tabURLDuSiteAAspirer
+    ScopeMappings = <>
+    Left = 736
+    Top = 296
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Liaisons rapides'
+      DataSource = BindSourceDB1
+      GridControl = StringGrid1
+      Columns = <>
+    end
+  end
+  object FDStanStorageJSONLink1: TFDStanStorageJSONLink
+    Left = 520
+    Top = 136
+  end
+  object web: TNetHTTPClient
+    UserAgent = 'Embarcadero URI Client/1.0'
+    Left = 560
+    Top = 384
+  end
+  object db: TFDConnection
+    Params.Strings = (
+      'DriverID=SQLite')
+    Connected = True
+    LoginPrompt = False
+    Left = 792
+    Top = 152
+  end
+  object FDLocalSQL1: TFDLocalSQL
+    Connection = db
+    Active = True
+    DataSets = <
+      item
+        DataSet = tabURLDuSiteAAspirer
+        Name = 'URL'
+      end>
+    Left = 840
+    Top = 208
+  end
+end
